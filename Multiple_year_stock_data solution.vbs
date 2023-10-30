@@ -29,7 +29,7 @@ Sub stockanalysis():
                   
                ws.Range("I" & summaryrow).Value = ticker
                ws.Range("L" & summaryrow).Value = tsv
-               ws.Range("J" & summaryrow).Value = (openprice - closeprice)
+               ws.Range("J" & summaryrow).Value = (closeprice - openprice)
                ws.Range("K" & summaryrow).Value = (Range("J" & summaryrow).Value / openprice)
                    
                tsv = 0
@@ -76,12 +76,20 @@ Sub stockanalysis():
            maxvol = ws.Cells(i, 12).Value
            
            End If
+                    
+           If ws.Cells(i, 10) > 0 Then
+           ws.Cells(i, 10).Interior.ColorIndex = 4
+           
+           ElseIf ws.Cells(i, 10) < 0 Then
+           ws.Cells(i, 10).Interior.ColorIndex = 3
+           
+           End If
            
            If ws.Cells(i, 11) > 0 Then
            ws.Cells(i, 11).Interior.ColorIndex = 4
            
            ElseIf ws.Cells(i, 11) < 0 Then
-          ws.Cells(i, 11).Interior.ColorIndex = 3
+           ws.Cells(i, 11).Interior.ColorIndex = 3
            
            End If
        
@@ -97,4 +105,3 @@ Sub stockanalysis():
     Next ws
       
 End Sub
-
